@@ -14,16 +14,16 @@ def menu():
     return input(textwrap.dedent(menu))
 
 
-def depositar(saldo, valor, extrato):
+def depositar(saldo, valor, extrato,/):
     if valor > 0:
         saldo += valor
         extrato += f"Deposito:\tR${saldo:.2f}\n"
-        print("\n==========Deposito realizado com sucesso==========")
+        print("\n===Deposito realizado com sucesso===")
     else:
         print("\n@@@ Operação falhou! O valor informado é inválido.  @@@")
     return saldo, extrato
 
-def sacar(saldo,valor,extrato,numero_saques,limite_saques,limite):
+def sacar(*,saldo,valor,extrato,numero_saques,limite_saques,limite):
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
     excedeu_saque = numero_saques > limite_saques
@@ -41,12 +41,13 @@ def sacar(saldo,valor,extrato,numero_saques,limite_saques,limite):
         numero_saques +=1
         saldo -= valor
         extrato += f"Saque: R$ {valor:.2f}\n"
+        print("\n=== Saque realizado com sucesso! ===")
 
     else:
        print("\n@@@ Operação falhou! O valor informado é inválido.  @@@")   
     return saldo, extrato
     
-def exibir_extrato(saldo,extrato):
+def exibir_extrato(saldo,/,*,extrato):
     print("\n================ EXTRATO ================")
     print("Não foram realizadas movimentações." if not extrato else extrato)
     print(f"\nSaldo: R$ {saldo:.2f}")
@@ -139,7 +140,7 @@ def main():
 
         elif opcao == "lc":
             listar_contas(contas)
-            
+
         else:
             print("@@@ Operação inválida! Por favor selecione novamente a operação desejada. @@@")
 
