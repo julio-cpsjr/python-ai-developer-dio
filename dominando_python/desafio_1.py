@@ -18,7 +18,7 @@ while True:
     opcao = input(menu)
 
     if opcao == "d":
-        valor = float(input("Informe o valor a ser depositado \n=>"))
+        valor = float(input("Informe o valor a ser depositado: \n=>"))
         saldo += valor
         extrato += f"Deposito: R$ {saldo:.2f}\n"
         print(f"O valor depositado foi R${saldo}")
